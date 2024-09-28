@@ -24,6 +24,8 @@ def expose():
     data = request.get_json()
     emails = data.get('emails')
     users = data.get('users')
+    logging.info(emails)
+    logging.info(users)
 
 
     data_sorted = sorted(emails, key=lambda x: convert_to_utc(x['timeSent']))
@@ -44,7 +46,7 @@ def expose():
             if email['subject'] == subject:
                 send_time = convert_to_utc(email['timeSent'])
             else:
-                logging.info("i am in HEREE-----------------------")
+                # logging.info("i am in HEREE-----------------------")
                 response_time = (convert_to_utc(email['timeSent']) - send_time).total_seconds()
                 if email['sender'] in response_time_dict:
                     response_time_dict[email['sender']][0] += response_time
