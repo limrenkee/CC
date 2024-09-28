@@ -2,6 +2,8 @@ import logging
 import json
 from flask import request
 from routes import app
+import itertools
+import string
 
 logger = logging.getLogger(__name__)
 
@@ -9,10 +11,17 @@ logger = logging.getLogger(__name__)
 @app.route('/wordle-game', methods=['POST'])
 def expose():
 
-    with open("data/words.txt", "r") as file: 
+    with open("data/output.txt", "r") as file: 
         allText = file.read() 
-        words = list(map(str, allText.split())) 
+        words = list(filter(lambda word: len(word) == 5, allText.split())) 
     
+
+    # alphabet = string.ascii_lowercase  # 'abcdefghijklmnopqrstuvwxyz'
+
+    # # Generate all possible 5-letter combinations
+    # words = [''.join(word) for word in itertools.product(alphabet, repeat=5)]
+
+    # logging.info(words)
     # get request data
     logging.info(request.get_json())
     guess_feedback = request.get_json()
@@ -47,6 +56,7 @@ def expose():
                 continue
 
             words = filtered_list
+            logging.info(words)
 
     return json.dumps({"guess": words[0]})
     
