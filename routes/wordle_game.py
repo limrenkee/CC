@@ -61,7 +61,7 @@ def expose():
                 return json.dumps({"guess": "aback"})
 
     logging.info("final word list {}".format(words))
-    return json.dumps({"guess": words[len(words)//2]})
+    return json.dumps({"guess": words[0]})
     
 
 
