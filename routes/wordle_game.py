@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 @app.route('/wordle-game', methods=['POST'])
 def expose():
 
-    with open("data/wordle-list.txt", "r") as file: 
+    with open("data/words.txt", "r") as file: 
         allText = file.read() 
         words = list(map(str, allText.split())) 
     
@@ -48,7 +48,7 @@ def expose():
 
             words = filtered_list
 
-    return json.dumps({"guess":words[0]})
+    return json.dumps({"guess": words[0]})
     
 
 
