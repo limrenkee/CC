@@ -5758,3 +5758,5 @@ pupal
 
 ["aahed", "bebog", "cello", "enols", "epulo"]
 ["?--X-", "-?-X-", "-X?OX", "X-X?-", "--O-?"]
+
+['aback', 'aback', 'aback', 'aback', 'aback']

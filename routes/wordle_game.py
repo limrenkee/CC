@@ -2,6 +2,7 @@ import logging
 import json
 from flask import request
 from routes import app
+import math
 import itertools
 import string
 
@@ -45,7 +46,7 @@ def expose():
             # no such character
             elif evaluationHistory[history_index][eval_index] == "-":
                 for word in words:
-                    if guessHistory[history_index][eval_index] not in word[:eval_index] or guessHistory[history_index][eval_index] not in word[eval_index+1:]:
+                    if (guessHistory[history_index][eval_index] not in word[:eval_index]) or (guessHistory[history_index][eval_index] not in word[eval_index+1:]):
                         filtered_list.append(word)
 
             elif evaluationHistory[history_index][eval_index] == "O":
@@ -58,7 +59,7 @@ def expose():
             words = filtered_list
             logging.info(words)
 
-    return json.dumps({"guess": words[0]})
+    return json.dumps({"guess": words[len(words)//2]})
     
 
 
