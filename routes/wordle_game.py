@@ -29,6 +29,7 @@ def expose():
         return json.dumps({"guess": "slate"})
 
     for history_index in range(len(evaluationHistory)):
+        words.remove(evaluationHistory[history_index])
         logging.info("MOVING TO NEXT HISTORY")
         for eval_index in range(len(evaluationHistory[history_index])):
             filtered_list = []
