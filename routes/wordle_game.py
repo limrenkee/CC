@@ -14,13 +14,14 @@ def expose():
         words = list(map(str, allText.split())) 
     
     # get request data
-
+    logging.info(request.get_json())
     guess_feedback = request.get_json()
     guessHistory = guess_feedback.get('guessHistory')
     evaluationHistory = guess_feedback.get('evaluationHistory')
 
-    # logging.info(guessHistory)
-    # logging.info(evaluationHistory)
+    logging.info(guessHistory)
+    logging.info(evaluationHistory)
+
 
     for history_index in range(len(evaluationHistory)):
         logging.info("MOVING TO NEXT HISTORY")
@@ -46,7 +47,6 @@ def expose():
                 continue
 
             words = filtered_list
-            logging.info(words)
 
     return json.dumps({"guess": words[0]})
     
