@@ -1,4 +1,4 @@
 from flask import Flask
 
 app = Flask(__name__)
-import routes.tourist
+import routes.bugfixer_one

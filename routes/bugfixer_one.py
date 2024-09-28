@@ -1,5 +1,6 @@
 import json
 import logging
+from collections import defaultdict, deque
 
 from flask import request
 
@@ -19,22 +20,34 @@ def expose():
         times = project.get('time')
         prereqs = project.get('prerequisites')
 
-        proj_timing_dict = {}
+        n = len(times)  # Number of projects
+        graph = defaultdict(list)  # Adjacency list for the graph
+        in_degree = [0] * n  # Track the number of incoming edges for each project
+        
+        # Build the graph and in-degree array
+        for a, b in prereqs:
+            graph[a - 1].append(b - 1)  # Convert to zero-based index
+            in_degree[b - 1] += 1
+        
+        # Queue for projects with no prerequisites (in-degree 0)
+        queue = deque()
+        for i in range(n):
+            if in_degree[i] == 0:
+                queue.append(i)
+        
+        total_time = [0] * n  # Array to hold the total time for each project
 
-        for index in range(len(times)):
-            proj_timing_dict[index+1] = [times[index], 0]
-
-        for prereq in prereqs:
-            dep = prereq[1]
-            indep = prereq[0]
-
-            if proj_timing_dict[indep][0] > proj_timing_dict[dep][1]:
-                proj_timing_dict[dep][0] = proj_timing_dict[dep][0] - proj_timing_dict[dep][1] + proj_timing_dict[indep][0]
-                proj_timing_dict[dep][1] = proj_timing_dict[indep][0]
-
-        # get the highest timing
-        key_with_highest_value = max(proj_timing_dict, key=lambda k: proj_timing_dict[k][0])
-        highest_value = proj_timing_dict[key_with_highest_value][0]
-        resultant_list.append(highest_value)
+        while queue:
+            project = queue.popleft()
+            total_time[project] += times[project]  # Add the time of the current project
+            
+            # For each dependent project, reduce the in-degree and add to queue if it's zero
+            for dependent in graph[project]:
+                in_degree[dependent] -= 1
+                if in_degree[dependent] == 0:
+                    queue.append(dependent)
+                total_time[dependent] = max(total_time[dependent], total_time[project])  # Update total time
+        
+        resultant_list.append(max(total_time))
         
     return json.dumps(resultant_list)
