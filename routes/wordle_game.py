@@ -26,7 +26,7 @@ def expose():
     logging.info(evaluationHistory)
 
     if evaluationHistory == []:
-        return json.dumps({"guess": "soare"})
+        return json.dumps({"guess": "slate"})
 
     for history_index in range(len(evaluationHistory)):
         logging.info("MOVING TO NEXT HISTORY")
@@ -58,7 +58,7 @@ def expose():
             if len(words) == 0:
                 return json.dumps({"guess": "aback"})
 
-    return json.dumps({"guess": words[len(words)//2]})
+    return json.dumps({"guess": words[0]})
     
 
 

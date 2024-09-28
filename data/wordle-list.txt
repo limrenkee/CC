@@ -1,3 +1,7 @@
+derby
+flank
+ghost
+winch
 aback
 abase
 abate
@@ -542,7 +546,6 @@ denim
 dense
 depot
 depth
-derby
 deter
 detox
 deuce
@@ -751,7 +754,6 @@ flair
 flake
 flaky
 flame
-flank
 flare
 flash
 flask
@@ -849,7 +851,6 @@ geeky
 geese
 genie
 genre
-ghost
 ghoul
 giant
 giddy
@@ -2271,7 +2272,6 @@ wight
 willy
 wimpy
 wince
-winch
 windy
 wiser
 wispy
