@@ -5756,5 +5756,5 @@ rumba
 biffy
 pupal
 
-["aahed", "bibby", "ccitt", "filii"]
-["?----", "-?---", "--?--", "-O-?-"]
+["aahed", "bebog", "cello", "enols", "epulo"]
+["?--X-", "-?-X-", "-X?OX", "X-X?-", "--O-?"]

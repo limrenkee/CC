@@ -39,13 +39,13 @@ def expose():
             # correct letter correct position
             if evaluationHistory[history_index][eval_index] == "X":
                 for word in words:
-                    if guessHistory[history_index][eval_index] in word:
+                    if (guessHistory[history_index][eval_index] in word) and (word[eval_index] != guessHistory[history_index][eval_index]):
                         filtered_list.append(word)
 
             # no such character
             elif evaluationHistory[history_index][eval_index] == "-":
                 for word in words:
-                    if guessHistory[history_index][eval_index] not in word:
+                    if guessHistory[history_index][eval_index] not in word[:eval_index] or guessHistory[history_index][eval_index] not in word[eval_index+1:]:
                         filtered_list.append(word)
 
             elif evaluationHistory[history_index][eval_index] == "O":
@@ -56,7 +56,7 @@ def expose():
                 continue
 
             words = filtered_list
-            # logging.info(words)
+            logging.info(words)
 
     return json.dumps({"guess": words[0]})
     
