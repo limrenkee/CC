@@ -48,7 +48,7 @@ def expose():
             words = filtered_list
             logging.info(words)
 
-    return json.dumps(words[0])
+    return json.dumps({"guess": words[0]})
     
 
 
