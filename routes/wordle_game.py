@@ -48,7 +48,7 @@ def expose():
 
             words = filtered_list
 
-    return json.dumps({"guess": words[0]})
+    return json.dumps({"guess":words[0]})
     
 
 
