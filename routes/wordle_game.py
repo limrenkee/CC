@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 @app.route('/wordle-game', methods=['POST'])
 def expose():
 
-    with open("data/output.txt", "r") as file: 
+    with open("data/wordle-list.txt", "r") as file: 
         allText = file.read() 
         words = list(filter(lambda word: len(word) == 5, allText.split())) 
     
