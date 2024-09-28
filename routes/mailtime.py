@@ -60,7 +60,7 @@ def expose():
     # logging.info(unique_threads)
 
 
-    return json.dumps({"responses": response_time_dict})
+    return json.dumps({"response": response_time_dict})
     
 
 
