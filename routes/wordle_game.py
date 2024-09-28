@@ -53,11 +53,13 @@ def expose():
                 continue
 
             words = filtered_list
-            logging.info(words)
+            # logging.info(words)
 
             if len(words) == 0:
+                logging.info('did not managed to find a word in my word list')
                 return json.dumps({"guess": "aback"})
 
+    logging.info("final word list {}".format(words))
     return json.dumps({"guess": words[0]})
     
 
