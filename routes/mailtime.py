@@ -32,7 +32,7 @@ def expose():
     unique_threads = {}
     for email in emails:
         # get unique email thread
-        if "RE: " not in email['subject']:
+        if "RE:" not in email['subject']:
             unique_threads[email['subject']] = []
 
     for email in emails:
